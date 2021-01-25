@@ -1,7 +1,7 @@
-'use strict';
+const seedHelper = require('../seed-helper');
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+module.exports = seedHelper({
+  up: async ({ queryInterface, Sequelize, transaction, addIndexes }) => {
     await queryInterface.createTable('<%= tableName %>', {
       id: {
         allowNull: false,
@@ -25,10 +25,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    }, {transaction});
+    // update below
+    await addIndexes('<%= tableName %>', [/* add indexes needed */], {
+      transaction,
     });
   },
-
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('<%= tableName %>');
-  }
-};
+  down: async ({ queryInterface, transaction }) => {
+    await queryInterface.dropTable('<%= tableName %>', { transaction });
+  },
+});
