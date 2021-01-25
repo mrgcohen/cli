@@ -1,24 +1,12 @@
-'use strict';
+const _ = require('lodash');
+const common = require('common-tags');
+const seedHelper = require('../seed-helper');
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+module.exports = seedHelper({
+  up: async ({ query, selectQuery, bulkUpdate, bulkInsert }) => {
+    // async code
   },
-
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
-};
+  down: async ({ query, selectQuery, bulkDelete, noRollback }) => {
+   // async code
+  },
+});
